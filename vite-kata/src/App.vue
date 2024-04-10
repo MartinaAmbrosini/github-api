@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // importo componenti
 import AppHeader from './components/AppHeader.vue'
+import AppMain from './components/AppMain.vue'
 
 // importo store
 import { store } from './store';
@@ -13,6 +14,7 @@ import config from './config.js';
 export default {
   components: {
     AppHeader,
+    AppMain,
   },
 
   data() {
@@ -24,7 +26,7 @@ export default {
 
   methods: {
     getRepo() {
-      const data = {
+      let data = {
         params: {
           q: store.searchText
         },
@@ -63,17 +65,7 @@ export default {
 
 <template>
   <AppHeader @search="getRepo" />
-
-  <div class="card" v-for="repo in store.repoList" style="width: 18rem;">
-    <!-- <img src="..." class="card-img-top" alt="..."> -->
-
-    <div class="card-body">
-      <h5 class="card-title">{{ repo.full_name }}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div>
+  <AppMain />
 </template>
 
 <style scoped lang="scss">
