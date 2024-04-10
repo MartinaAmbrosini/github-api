@@ -20,11 +20,12 @@ export default {
                 <input class="form-control me-2" type="search" placeholder="Cerca" v-model="store.searchText"
                     @keyup.enter="$emit('search')" aria-label=" Search">
 
-                <!-- <select class="form-select" aria-label="Default select example">
-                    <option selected disabled>Seleziona categoria</option>
+                <select class="form-select" name="repositories" id="repositories" v-model="store.searchOption"
+                    aria-label="Default select example">
+                    <option selected value="0" disabled>Seleziona categoria</option>
                     <option value="1">Repositories</option>
                     <option value="2">Utente/Organizzazioni</option>
-                </select> -->
+                </select>
                 <button class="btn btn-success ms-2" type="submit" @click.prevent="$emit('search')"><i
                         class="fas fa-search"></i></button>
             </form>

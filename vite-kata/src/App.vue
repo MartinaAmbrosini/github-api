@@ -36,28 +36,33 @@ export default {
         }
       };
 
-      axios.get(`${store.repoApiURL}`, data)
-        .then(res => {
-          console.log(res);
-          store.repoList = res.data.items;
-          // console.log(store.repoList);
-          console.log(store.searchText);
-          // console.log(store.repoList[1]);
-        })
-        .catch(err => {
-          console.log(err);
-        }),
-        //   axios.get(store.tvApiURL + store.searchText)
-        //     .then(res => {
-        //       store.tvList = res.data.results;
-        //       console.log(store.tvList);
-        //     })
-        //     .catch(err => {
-        //       console.log(err);
-        //     })
+      console.log(store.searchOption);
+      console.log(store.searchText);
 
-        console.log(store.searchText)
+      if (store.searchOption === "1") {
+        axios.get(`${store.repoApiURL}`, data)
+          .then(res => {
+            store.repoList = res.data.items;
+          })
+          .catch(err => {
+            console.log(err);
+          }),
+          console.log(store.searchText)
+      } else if (store.searchOption === "2") {
+        axios.get(`${store.user_orgApiURL}`, data)
+          .then(res => {
+            store.user_orgList = res.data.items;
+          })
+          .catch(err => {
+            console.log(err);
+          }),
+          console.log(store.searchText)
+      }
+
       store.searchText = '';
+
+      store.repoList = '';
+      store.user_orgList = '';
     }
   },
 }

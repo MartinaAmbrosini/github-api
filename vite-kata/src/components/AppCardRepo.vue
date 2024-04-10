@@ -1,42 +1,9 @@
 <script>
 export default {
-    name: 'AppCard',
+    name: 'AppCardRepo',
     props: {
         info: Object
     },
-    // data() {
-    //     return {
-    //         display: true,
-    //         conthover: 0,
-    //         contleave: 0,
-    //         lang: ["it", "de", "en", "es", "fr", "us"],
-    //     }
-    // },
-    // methods: {
-    //     hover() {
-    //         if (this.conthover == 0) {
-    //             this.display = !this.display
-    //             this.conthover++
-    //             this.contleave = 0
-    //         }
-    //     },
-    //     leave() {
-    //         if (this.contleave == 0) {
-    //             this.display = !this.display
-    //             this.contleave++
-    //             this.conthover = 0
-    //         }
-    //     },
-
-    //     getImagePath: function (img) {
-    //         console.log("../assets/${img}.png")
-    //         if (this.lang.includes(img)) {
-    //             return new URL("../assets/" + img + ".png", import.meta.url).href;
-    //         } else {
-    //             return new URL("../assets/zz.png", import.meta.url).href;
-    //         }
-    //     }
-    // }
 };
 </script>
 
