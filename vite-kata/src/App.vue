@@ -25,7 +25,7 @@ export default {
   },
 
   methods: {
-    getRepo() {
+    async getRepo() {
       let data = {
         params: {
           q: store.searchText
@@ -42,6 +42,13 @@ export default {
       // controllo se l'utente digita almeno 3 caratteri prima di far partire la ricerca
 
       if (store.searchText.length >= 3) {
+
+        // una volta verificata la lunghezza effettiva della ricerca (>= 3) faccio vedere un loader che "pre-carica" le card
+
+        document.getElementById("load").classList.remove("d-none");
+
+
+
         if (store.searchOption === "1") {
           axios.get(`${store.repoApiURL}`, data)
             .then(res => {
@@ -61,6 +68,10 @@ export default {
             }),
             console.log(store.searchText)
         }
+
+        // una volta ottenuti i risultati del mio array faccio scomparire il loader
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        document.getElementById("load").classList.add("d-none");
 
         // faccio uscire l'errore dopo aver fatto la ricerca
 
