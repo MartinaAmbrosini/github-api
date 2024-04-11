@@ -39,26 +39,38 @@ export default {
       console.log(store.searchOption);
       console.log(store.searchText);
 
-      if (store.searchOption === "1") {
-        axios.get(`${store.repoApiURL}`, data)
-          .then(res => {
-            store.repoList = res.data.items;
-          })
-          .catch(err => {
-            console.log(err);
-          }),
-          console.log(store.searchText)
-      } else if (store.searchOption === "2") {
-        axios.get(`${store.user_orgApiURL}`, data)
-          .then(res => {
-            store.user_orgList = res.data.items;
-          })
-          .catch(err => {
-            console.log(err);
-          }),
-          console.log(store.searchText)
-      }
+      // controllo se l'utente digita almeno 3 caratteri prima di far partire la ricerca
 
+      if (store.searchText.length >= 3) {
+        if (store.searchOption === "1") {
+          axios.get(`${store.repoApiURL}`, data)
+            .then(res => {
+              store.repoList = res.data.items;
+            })
+            .catch(err => {
+              console.log(err);
+            }),
+            console.log(store.searchText)
+        } else if (store.searchOption === "2") {
+          axios.get(`${store.user_orgApiURL}`, data)
+            .then(res => {
+              store.user_orgList = res.data.items;
+            })
+            .catch(err => {
+              console.log(err);
+            }),
+            console.log(store.searchText)
+        }
+
+        // faccio uscire l'errore dopo aver fatto la ricerca
+
+        if (store.repoList.length == 0 && store.user_orgList.length == 0) {
+          document.getElementById("error").classList.remove("d-none");
+
+          console.log(document.getElementById("error").classList);
+
+        }
+      }
       store.searchText = '';
 
       store.repoList = '';
@@ -69,10 +81,25 @@ export default {
 </script>
 
 <template>
+  <div class="background">
+  </div>
   <AppHeader @search="getRepo" />
   <AppMain />
+
 </template>
 
 <style scoped lang="scss">
 @use './styles/general.scss' as *;
+
+.background {
+  background-image: url(https://images.saymedia-content.com/.image/t_share/MTkzOTUzODU0MDkyODc5MzY1/particlesjs-examples.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
 </style>

@@ -25,6 +25,7 @@ export default {
             <AppCardRepo :info="repo" />
         </div>
     </div>
+    <div id="error" class="d-none"> Non esiste un risultato con il nome ricercato</div>
     <div class="d-flex flex-wrap justify-content-between p-5">
         <div class="card" v-for="repo in store.user_orgList">
             <div class="card-user" v-if="repo.type === 'User'">
@@ -52,7 +53,7 @@ h2 {
     min-height: 448px;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
     transition: all 0.2s;
-    background: radial-gradient(#76b2fe, #b69efe);
+    background: radial-gradient(#e0993d, #89e086);
 }
 
 .card-user {
@@ -63,5 +64,6 @@ h2 {
 .card:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.01);
+    cursor: pointer;
 }
 </style>
